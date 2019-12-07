@@ -1,23 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+function CreateToDo(props) {
+  return (
+    <form onSubmit={props.onFormSubmit}>
+      <input type="text" value={props.value} onChange={props.onInputChange} />
+      <input type="submit" />
+    </form>
+  )
+}
+
+function ShowToDos (props) {
+  return props.todos.length === 0 ? <h1>empty</h1> : (
+    <div>
+      {props.todos.map(el => <p>{el}</p>)}
+    </div>
+  );
+}
+
 function App() {
+  const [value, setValue] = React.useState('hello');
+  const [todos, setTodos] = React.useState([]);
+  function onFormSubmit (e) {
+    e.preventDefault();
+    setTodos([...todos, value]);
+  }
+  function onInputChange (e) {
+    setValue(e.target.value);
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>my to do list</h1>
+        <CreateToDo value={value} onFormSubmit={onFormSubmit} onInputChange={onInputChange}  />
+        <ShowToDos todos={todos} />
       </header>
     </div>
   );
