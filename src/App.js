@@ -1,22 +1,7 @@
 import React from 'react';
 import './App.css';
-
-function CreateToDo(props) {
-  return (
-    <form onSubmit={props.onFormSubmit}>
-      <input type="text" value={props.value} onChange={props.onInputChange} />
-      <input type="submit" />
-    </form>
-  )
-}
-
-function ShowToDos (props) {
-  return props.todos.length === 0 ? <h1>empty</h1> : (
-    <div>
-      {props.todos.map(el => <p>{el}</p>)}
-    </div>
-  );
-}
+import CreateToDo from './components/CreateToDo';
+import ShowToDos from './components/ShowToDos';
 
 function App() {
   const [value, setValue] = React.useState('hello');
@@ -24,6 +9,7 @@ function App() {
   function onFormSubmit (e) {
     e.preventDefault();
     setTodos([...todos, value]);
+    setValue('');
   }
   function onInputChange (e) {
     setValue(e.target.value);
