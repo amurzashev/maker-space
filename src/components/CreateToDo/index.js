@@ -1,11 +1,13 @@
 import React from 'react';
+import Button from '../atoms/Button';
+import TextInput from '../atoms/TextInput';
 
 function CreateToDo(props) {
   const { onFormSubmit, value, onInputChange } = props;
   return (
     <form onSubmit={onFormSubmit}>
-      <input type="text" value={value} onChange={onInputChange} />
-      <input type="submit" />
+      <TextInput value={value} onChange={onInputChange} />
+      <Button>ADD</Button>
     </form>
   )
 }
