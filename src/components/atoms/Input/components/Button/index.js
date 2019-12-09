@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const Button = styled.button`
-  background: red;
+  background: #9FD356;
   color: white;
   padding: 0 20px;
   font-weight: bold;
