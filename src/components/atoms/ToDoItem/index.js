@@ -10,7 +10,7 @@ export default styled.li`
   &:hover {
     background: #e2e2e2;
   }
-  &:nth-child(odd):not(:hover) {
+  &:nth-of-type(odd):not(:hover) {
     background: #eee;
   }
 `;
