@@ -30,6 +30,8 @@ const ToDoList = ({ todos }) => {
   }
 };
 
+// TODO: input error handling on empty value
+
 const Home = () => {
   const [value, setValue] = useState('');
   const [todos, setTodos] = useState([]);
