@@ -1,13 +1,12 @@
 import React from 'react';
 import StyledForm from '../../molecules/StyledForm';
-import Button from '../../atoms/Button';
-import TextInput from '../../atoms/TextInput';
+import Input from '../../atoms/Input';
 
 const Home = () => {
   return (
     <StyledForm>
-      <TextInput type="text" />
-      <Button>Add task</Button>
+      <Input type="text" />
+      <Input type="submit">Add task</Input>
     </StyledForm>
   )
 };

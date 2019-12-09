@@ -1,17 +1,17 @@
 import React from 'react';
 import { Text, Button } from './components';
 
-const renderInput = type => {
+const renderInput = ({ type, ...props }) => {
   switch(type) {
     case 'text':
-      return <Text />
+      return <Text {...props} />
     case 'submit':
-      return <Button />
+      return <Button {...props} />
     default:
       return null;
   }
 };
 
-const Input = ({ type }) => renderInput(type);
+const Input = props => renderInput(props);
 
 export default Input;
