@@ -8,7 +8,7 @@ const renderInput = ({ type, ...props }) => {
     case 'submit':
       return <Button {...props} />
     default:
-      return null;
+      throw new Error("Input must be one of [text, submit]");
   }
 };
 
