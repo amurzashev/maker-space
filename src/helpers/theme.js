@@ -6,6 +6,7 @@ export default {
     white: '#FAFFFD',
     coral: '#FA824C',
   },
+  // TODO: add response design breakpoints in px?
   breakpoints: {
     mobile: '',
     desktop: '',
