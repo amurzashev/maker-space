@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StyledForm from '../../molecules/StyledForm';
+import { StyledForm, ListWrapper } from '../../molecules';
 import { Input, ToDoItem } from '../../atoms';
 
 const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
@@ -18,9 +18,17 @@ const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
   );
 };
 
-const ToDoList = () => (
-  <ToDoItem>Hello world</ToDoItem>
-);
+const ToDoList = ({ todos }) => {
+  if (todos.length === 0) {
+    return <h1>no items yet!</h1>
+  } else {
+    return (
+      <ListWrapper>
+        {todos.map(todo => <ToDoItem key={`${todo}${Math.random()}`}>{todo}</ToDoItem>)}
+      </ListWrapper>
+    )
+  }
+};
 
 const Home = () => {
   const [value, setValue] = useState('');
@@ -45,7 +53,7 @@ const Home = () => {
   return (
     <>
       <NewToDo {...todoProps} />
-      <ToDoList />
+      <ToDoList todos={todos} />
     </>
   );
 };

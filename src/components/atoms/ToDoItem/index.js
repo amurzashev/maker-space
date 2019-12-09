@@ -8,6 +8,9 @@ export default styled.li`
   align-items: center;
   cursor: pointer;
   &:hover {
+    background: #e2e2e2;
+  }
+  &:nth-child(odd):not(:hover) {
     background: #eee;
   }
 `;
