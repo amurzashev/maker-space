@@ -18,6 +18,8 @@ const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
   );
 };
 
+// TODO: use memo to prevent rerender
+
 const ToDoList = ({ todos }) => {
   if (todos.length === 0) {
     return <h1>no items yet!</h1>
