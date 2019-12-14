@@ -3,6 +3,16 @@ import { StyledForm, ListWrapper } from '../../molecules';
 import { Input, ToDoItem } from '../../atoms';
 import styled from '@emotion/styled';
 
+/**
+ * Sun 15 plan
+ * objects and syntax obj[const] obj.const || 'default' etc.. props = {...a, props};
+ * styled component - error handling
+ * onclick turn all to crossed out back and forth
+ * /about page
+ * hocs - basic! authentication
+ * styleguidist documentation?
+ */
+
 const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
   const textInputProps = {
     type: 'text',
@@ -27,8 +37,9 @@ const Wrap = styled.div`
 `;
 
 const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
+  console.log('render');
   if (todos.length === 0) {
-    return <h1>no items yet!</h1>
+    return null;
   } else {
     return (
       <ListWrapper>
@@ -48,9 +59,15 @@ const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
       </ListWrapper>
     )
   }
+  // heads up: this should not work, but it does
 }, (prevProps, nextProps) => prevProps.todos === nextProps.todos); // have to manually tell react to check todos array
 
 // TODO: input error handling on empty value using Styled Components
+
+const AppWrap = styled.div`
+  max-width: 800px;
+  margin: 60px auto;
+`;
 
 const Home = () => {
   const [value, setValue] = useState('');
@@ -79,11 +96,11 @@ const Home = () => {
     const oldToDos = [...todos];
     oldToDos[index].isCrossed = !oldToDos[index].isCrossed;
     setTodos(oldToDos);
-  }
+  };
 
   function deleteToDo () {
 
-  }
+  };
 
   const newTodoProps = {
     onInputChange,
@@ -98,10 +115,10 @@ const Home = () => {
   };
 
   return (
-    <>
+    <AppWrap>
       <NewToDo {...newTodoProps} />
       <ToDoList {...todoListProps} />
-    </>
+    </AppWrap>
   );
 };
 
@@ -114,4 +131,7 @@ export default Home;
  * reddit - Merei
  * real time chat - Erkebulan
  * weather website - Togzhan
+ * advanced money converter - 
+ * simplified trello(notion) -
+ * classifieds site -
  */
