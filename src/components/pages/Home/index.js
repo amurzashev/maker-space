@@ -20,13 +20,13 @@ const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
 
 // TODO: use memo to prevent rerender
 
-const ToDoList = ({ todos }) => {
+const ToDoList = ({ todos, crossToDo }) => {
   if (todos.length === 0) {
     return <h1>no items yet!</h1>
   } else {
     return (
       <ListWrapper>
-        {todos.map(todo => <ToDoItem key={`${todo.value}${Math.random()}`} isCrossed={todo.isCrossed}>{todo.value}</ToDoItem>)}
+        {todos.map((todo, index) => <ToDoItem key={`${todo.value}${Math.random()}`} isCrossed={todo.isCrossed} onClick={() => crossToDo(index)}>{todo.value}</ToDoItem>)}
       </ListWrapper>
     )
   }
@@ -52,6 +52,10 @@ const Home = () => {
     setValue(e.target.value);
   };
 
+  function crossToDo (index) {
+    alert(`my idnex is ${index}`);
+  }
+
   const todoProps = {
     onInputChange,
     onFormSubmit,
@@ -61,7 +65,7 @@ const Home = () => {
   return (
     <>
       <NewToDo {...todoProps} />
-      <ToDoList todos={todos} />
+      <ToDoList todos={todos} crossToDo={crossToDo} />
     </>
   );
 };
