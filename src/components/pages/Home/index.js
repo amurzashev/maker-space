@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { StyledForm, ListWrapper } from '../../molecules';
 import { Input, ToDoItem } from '../../atoms';
+import styled from '@emotion/styled';
 
 const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
   const textInputProps = {
@@ -20,17 +21,35 @@ const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
 
 // TODO: use memo to prevent rerender
 
-const ToDoList = ({ todos, crossToDo }) => {
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
+  console.log('render')
   if (todos.length === 0) {
     return <h1>no items yet!</h1>
   } else {
     return (
       <ListWrapper>
-        {todos.map((todo, index) => <ToDoItem key={`${todo.value}${Math.random()}`} isCrossed={todo.isCrossed} onClick={() => crossToDo(index)}>{todo.value}</ToDoItem>)}
+        {todos.map((todo, index) => (
+          <Wrap key={todo.key}>
+            <ToDoItem
+              isCrossed={todo.isCrossed}
+              onClick={() => crossToDo(index)}
+            >
+              {todo.value}
+            </ToDoItem>
+            <Input type="submit" color="primary">
+              delete item
+            </Input>
+          </Wrap>
+        ))}
       </ListWrapper>
     )
   }
-};
+}, (prevProps, nextProps) => prevProps.todos === nextProps.todos); // have to manually tell react to check todos array
 
 // TODO: input error handling on empty value
 
@@ -43,7 +62,12 @@ const Home = () => {
     if (!value) {
       alert("Can't be empty");
     } else {
-      setTodos([...todos, { value, isCrossed: false }]);
+      const todo = {
+        value,
+        isCrossed: false,
+        key: `${value}${Math.random().toFixed(4)}`,
+      };
+      setTodos([...todos, todo]);
       setValue('');
     }
   };
@@ -53,21 +77,42 @@ const Home = () => {
   };
 
   function crossToDo (index) {
-    alert(`my idnex is ${index}`);
+    const oldToDos = [...todos];
+    oldToDos[index].isCrossed = !oldToDos[index].isCrossed;
+    setTodos(oldToDos);
   }
 
-  const todoProps = {
+  function deleteToDo () {
+
+  }
+
+  const newTodoProps = {
     onInputChange,
     onFormSubmit,
     value,
   };
 
+  const todoListProps = {
+    todos,
+    crossToDo,
+    deleteToDo,
+  };
+
   return (
     <>
-      <NewToDo {...todoProps} />
-      <ToDoList todos={todos} crossToDo={crossToDo} />
+      <NewToDo {...newTodoProps} />
+      <ToDoList {...todoListProps} />
     </>
   );
 };
 
 export default Home;
+
+/**
+ * tic tac toe - Darkhan
+ * calculator - Daniyar
+ * instagram - 
+ * reddit - Merei
+ * real time chat - Erkebulan
+ * weather website - Togzhan
+ */
