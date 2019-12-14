@@ -13,4 +13,9 @@ export default styled.li`
   &:nth-of-type(odd):not(:hover) {
     background: #eee;
   }
+  ${props => props.isCrossed ? `
+    text-decoration: line-through;
+  ` : `
+    text-decoration: initial;
+  `}
 `;

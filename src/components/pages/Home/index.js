@@ -26,7 +26,7 @@ const ToDoList = ({ todos }) => {
   } else {
     return (
       <ListWrapper>
-        {todos.map(todo => <ToDoItem key={`${todo}${Math.random()}`}>{todo}</ToDoItem>)}
+        {todos.map(todo => <ToDoItem key={`${todo.value}${Math.random()}`} isCrossed={todo.isCrossed}>{todo.value}</ToDoItem>)}
       </ListWrapper>
     )
   }
@@ -40,8 +40,12 @@ const Home = () => {
 
   function onFormSubmit (e) {
     e.preventDefault();
-    setTodos([...todos, value]);
-    setValue('');
+    if (!value) {
+      alert("Can't be empty");
+    } else {
+      setTodos([...todos, { value, isCrossed: false }]);
+      setValue('');
+    }
   };
 
   function onInputChange (e) {
