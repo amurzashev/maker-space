@@ -7,14 +7,13 @@ export default styled.li`
   display: flex;
   align-items: center;
   cursor: pointer;
-  &:hover {
-    background: #e2e2e2;
-  }
-  &:nth-of-type(odd):not(:hover) {
-    background: #eee;
-  }
+  border-bottom: 1px solid ${props => props.theme.colors.primary};
+  box-sizing: border-box;
+  transition: 0.3s;
+  user-select: none;
   ${props => props.isCrossed ? `
     text-decoration: line-through;
+    opacity: 0.6;
   ` : `
     text-decoration: initial;
   `}

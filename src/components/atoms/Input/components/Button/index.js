@@ -9,6 +9,7 @@ const Button = styled.button`
   height: 40px;
   border: 0;
   font-size: 0.8rem;
+  outline: none;
 `;
 
 export default Button;

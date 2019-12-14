@@ -13,6 +13,17 @@ import styled from '@emotion/styled';
  * styleguidist documentation?
  */
 
+ const StyledInputText = styled(Input)`
+  flex: 0.8;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 1px solid ${props => props.theme.colors.secondary};
+ `;
+
+ const StyledInputSubmit = styled(Input)`
+  flex: 0.2;
+ `;
+
 const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
   const textInputProps = {
     type: 'text',
@@ -23,21 +34,22 @@ const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
   };
   return (
     <StyledForm onSubmit={onFormSubmit}>
-      <Input {...textInputProps} />
-      <Input type="submit">Add task</Input>
+      <StyledInputText {...textInputProps} />
+      <StyledInputSubmit type="submit">Add task</StyledInputSubmit>
     </StyledForm>
   );
 };
-
-// TODO: use memo to prevent rerender
 
 const Wrap = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
+const StyledToDoItem = styled(ToDoItem)`
+  flex: 0.8;
+`;
+
 const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
-  console.log('render');
   if (todos.length === 0) {
     return null;
   } else {
@@ -45,15 +57,15 @@ const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
       <ListWrapper>
         {todos.map((todo, index) => (
           <Wrap key={todo.key}>
-            <ToDoItem
+            <StyledToDoItem
               isCrossed={todo.isCrossed}
               onClick={() => crossToDo(index)}
             >
               {todo.value}
-            </ToDoItem>
-            <Input type="submit" color="primary">
-              delete item
-            </Input>
+            </StyledToDoItem>
+            <StyledInputSubmit type="submit" color="primary">
+              Delete item
+            </StyledInputSubmit>
           </Wrap>
         ))}
       </ListWrapper>
@@ -65,7 +77,7 @@ const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
 // TODO: input error handling on empty value using Styled Components
 
 const AppWrap = styled.div`
-  max-width: 800px;
+  max-width: 600px;
   margin: 60px auto;
 `;
 
