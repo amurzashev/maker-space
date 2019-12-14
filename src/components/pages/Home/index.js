@@ -27,7 +27,6 @@ const Wrap = styled.div`
 `;
 
 const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
-  console.log('render')
   if (todos.length === 0) {
     return <h1>no items yet!</h1>
   } else {
@@ -51,7 +50,7 @@ const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
   }
 }, (prevProps, nextProps) => prevProps.todos === nextProps.todos); // have to manually tell react to check todos array
 
-// TODO: input error handling on empty value
+// TODO: input error handling on empty value using Styled Components
 
 const Home = () => {
   const [value, setValue] = useState('');
