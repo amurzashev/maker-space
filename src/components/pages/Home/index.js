@@ -17,25 +17,34 @@ import styled from '@emotion/styled';
   flex: 0.8;
   box-sizing: border-box;
   border: 0;
-  border-bottom: 1px solid ${props => props.theme.colors.secondary};
- `;
+  ${props => props.inputError ? `
+    border-bottom: 1px solid red;
+  ` : `
+    border-bottom: 1px solid ${props.theme.colors.secondary};
+  `};
+`;
 
  const StyledInputSubmit = styled(Input)`
   flex: 0.2;
+  ${props => props.inputError ? `
+    background-color: red;
+  ` : ``}
  `;
 
-const NewToDo = ({ onFormSubmit, onInputChange, value }) => {
+const NewToDo = ({ onFormSubmit, onInputChange, value, inputError  }) => {
   const textInputProps = {
     type: 'text',
     autoFocus: true,
     onChange: onInputChange,
     placeholder: 'Add new task',
     value,
+    inputError,
   };
   return (
     <StyledForm onSubmit={onFormSubmit}>
+      <p>{inputError}</p>
       <StyledInputText {...textInputProps} />
-      <StyledInputSubmit type="submit">Add task</StyledInputSubmit>
+      <StyledInputSubmit type="submit" inputError={inputError}>Add task</StyledInputSubmit>
     </StyledForm>
   );
 };
@@ -50,6 +59,7 @@ const StyledToDoItem = styled(ToDoItem)`
 `;
 
 const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
+  console.log('render');
   if (todos.length === 0) {
     return null;
   } else {
@@ -63,7 +73,7 @@ const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
             >
               {todo.value}
             </StyledToDoItem>
-            <StyledInputSubmit type="submit" color="primary">
+            <StyledInputSubmit type="submit" color="primary" onClick={() => deleteToDo(index)}>
               Delete item
             </StyledInputSubmit>
           </Wrap>
@@ -84,11 +94,12 @@ const AppWrap = styled.div`
 const Home = () => {
   const [value, setValue] = useState('');
   const [todos, setTodos] = useState([]);
+  const [inputError, setInputError] = useState('');
 
   function onFormSubmit (e) {
     e.preventDefault();
     if (!value) {
-      alert("Can't be empty");
+      setInputError('Can not be empty');
     } else {
       const todo = {
         value,
@@ -102,6 +113,9 @@ const Home = () => {
 
   function onInputChange (e) {
     setValue(e.target.value);
+    if(inputError) {
+      setInputError('');
+    }
   };
 
   function crossToDo (index) {
@@ -110,14 +124,17 @@ const Home = () => {
     setTodos(oldToDos);
   };
 
-  function deleteToDo () {
-
+  function deleteToDo (index) {
+    const firstHalf = todos.slice(0, index);
+    const secondHalf = todos.slice(index + 1, todos.length);
+    setTodos([...firstHalf, ...secondHalf]);
   };
 
   const newTodoProps = {
     onInputChange,
     onFormSubmit,
     value,
+    inputError,
   };
 
   const todoListProps = {
@@ -146,4 +163,5 @@ export default Home;
  * advanced money converter - 
  * simplified trello(notion) -
  * classifieds site -
+ * fake shop with cart - 
  */
