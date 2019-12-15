@@ -1,7 +1,8 @@
 import React, { useState, memo } from 'react';
+import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import { StyledForm, ListWrapper } from '../../molecules';
 import { Input, ToDoItem } from '../../atoms';
-import styled from '@emotion/styled';
 
 /**
  * Sun 15 plan
@@ -9,15 +10,15 @@ import styled from '@emotion/styled';
  * styled component - error handling
  * onclick turn all to crossed out back and forth
  * /about page
- * hocs - basic! authentication
  * styleguidist documentation?
+ * hocs - basic! authentication
  */
 
- /**
+/**
   * input - regex whitespaces
   */
 
- const StyledInputText = styled(Input)`
+const StyledInputText = styled(Input)`
   flex: 0.8;
   box-sizing: border-box;
   border: 0;
@@ -28,14 +29,16 @@ import styled from '@emotion/styled';
   `};
 `;
 
- const StyledInputSubmit = styled(Input)`
+const StyledInputSubmit = styled(Input)`
   flex: 0.2;
   ${props => props.inputError ? `
     background-color: red;
   ` : ``}
  `;
 
-const NewToDo = ({ onFormSubmit, onInputChange, value, inputError  }) => {
+const NewToDo = ({
+  onFormSubmit, onInputChange, value, inputError,
+}) => {
   const textInputProps = {
     type: 'text',
     autoFocus: true,
@@ -63,28 +66,26 @@ const StyledToDoItem = styled(ToDoItem)`
 `;
 
 const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
-  console.log('render');
   if (todos.length === 0) {
     return null;
-  } else {
-    return (
-      <ListWrapper>
-        {todos.map((todo, index) => (
-          <Wrap key={todo.key}>
-            <StyledToDoItem
-              isCrossed={todo.isCrossed}
-              onClick={() => crossToDo(index)}
-            >
-              {todo.value}
-            </StyledToDoItem>
-            <StyledInputSubmit type="submit" color="primary" onClick={() => deleteToDo(index)}>
-              Delete item
-            </StyledInputSubmit>
-          </Wrap>
-        ))}
-      </ListWrapper>
-    )
   }
+  return (
+    <ListWrapper>
+      {todos.map((todo, index) => (
+        <Wrap key={todo.key}>
+          <StyledToDoItem
+            isCrossed={todo.isCrossed}
+            onClick={() => crossToDo(index)}
+          >
+            {todo.value}
+          </StyledToDoItem>
+          <StyledInputSubmit type="submit" color="primary" onClick={() => deleteToDo(index)}>
+            Delete item
+          </StyledInputSubmit>
+        </Wrap>
+      ))}
+    </ListWrapper>
+  );
   // heads up: this should not work, but it does
 }, (prevProps, nextProps) => prevProps.todos === nextProps.todos); // have to manually tell react to check todos array
 
@@ -115,24 +116,24 @@ const Home = () => {
     }
   };
 
-  function onInputChange (e) {
+  function onInputChange(e) {
     setValue(e.target.value);
-    if(inputError) {
+    if (inputError) {
       setInputError('');
     }
-  };
+  }
 
-  function crossToDo (index) {
+  function crossToDo(index) {
     const oldToDos = [...todos];
     oldToDos[index].isCrossed = !oldToDos[index].isCrossed;
     setTodos(oldToDos);
-  };
+  }
 
-  function deleteToDo (index) {
+  function deleteToDo(index) {
     const firstHalf = todos.slice(0, index);
     const secondHalf = todos.slice(index + 1, todos.length);
     setTodos([...firstHalf, ...secondHalf]);
-  };
+  }
 
   const newTodoProps = {
     onInputChange,
@@ -153,6 +154,26 @@ const Home = () => {
       <ToDoList {...todoListProps} />
     </AppWrap>
   );
+};
+
+ToDoList.propTypes = {
+  todos: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    isCrossed: PropTypes.bool.isRequired,
+  }).isRequired,
+  crossToDo: PropTypes.func.isRequired,
+  deleteToDo: PropTypes.func.isRequired,
+};
+
+NewToDo.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  inputError: PropTypes.string,
+};
+
+NewToDo.defaultProps = {
+  inputError: '',
 };
 
 export default Home;
