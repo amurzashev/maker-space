@@ -13,6 +13,10 @@ import styled from '@emotion/styled';
  * styleguidist documentation?
  */
 
+ /**
+  * input - regex whitespaces
+  */
+
  const StyledInputText = styled(Input)`
   flex: 0.8;
   box-sizing: border-box;
@@ -156,12 +160,12 @@ export default Home;
 /**
  * tic tac toe - Darkhan
  * calculator - Daniyar
- * instagram - 
+ * instagram - Eugene
  * reddit - Merei
  * real time chat - Erkebulan
  * weather website - Togzhan
- * advanced money converter - 
- * simplified trello(notion) -
+ * simplified trello(notion) - Aigul
+ * advanced money converter - Maxat
  * classifieds site -
  * fake shop with cart - 
  */
