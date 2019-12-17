@@ -2,16 +2,16 @@ import React from 'react';
 import { Text, Button } from './components';
 
 const renderInput = ({ type, ...props }) => {
-  switch(type) {
+  switch (type) {
     case 'text':
-      return <Text {...props} />
+      return <Text {...props} />;
     case 'submit':
-      return <Button {...props} />
+      return <Button {...props} />;
     default:
-      throw new Error("Input must be one of [text, submit]");
+      throw new Error('Input must be one of [text, submit]');
   }
 };
 
-const Input = props => renderInput(props);
+const Input = (props) => renderInput(props);
 
 export default Input;

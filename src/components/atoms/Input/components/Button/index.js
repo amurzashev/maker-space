@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 const Button = styled.button`
-  background: ${props => props.theme.colors[props.color] || props.theme.colors.secondary};
-  color: ${props => props.theme.colors.white};
+  background: ${(props) => props.theme.colors[props.color] || props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.white};
   padding: 0 20px;
   font-weight: bold;
   cursor: pointer;
