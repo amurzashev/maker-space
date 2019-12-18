@@ -47,6 +47,7 @@ const NewToDo = ({
     onChange: onInputChange,
     placeholder: inputError || 'Add new task',
     value,
+    inputError,
   };
   return (
     <StyledForm onSubmit={onFormSubmit}>
