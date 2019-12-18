@@ -10,7 +10,7 @@ const Wrap = styled.nav`
   left: 0;
   padding: 0 20px;
   box-sizing: border-box;
-  background: ${props => props.theme.colors.primary};
+  background: ${(props) => props.theme.colors.primary};
   color: white;
 `;
 

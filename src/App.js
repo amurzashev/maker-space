@@ -11,8 +11,8 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <Navbar />
       <Switch>
-          <Route path="/" component={Home} exact={true} />
-          <Route path="/about" component={About} exact={true} />
+        <Route path="/" component={Home} exact />
+        <Route path="/about" component={About} exact />
       </Switch>
     </ThemeProvider>
   </BrowserRouter>

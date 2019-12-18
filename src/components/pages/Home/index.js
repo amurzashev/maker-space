@@ -22,18 +22,18 @@ const StyledInputText = styled(Input)`
   flex: 0.8;
   box-sizing: border-box;
   border: 0;
-  ${props => props.inputError ? `
+  ${(props) => (props.inputError ? `
     border-bottom: 1px solid red;
   ` : `
     border-bottom: 1px solid ${props.theme.colors.secondary};
-  `};
+  `)};
 `;
 
 const StyledInputSubmit = styled(Input)`
   flex: 0.2;
-  ${props => props.inputError ? `
+  ${(props) => (props.inputError ? `
     background-color: red;
-  ` : ``}
+  ` : '')}
  `;
 
 const NewToDo = ({
@@ -86,8 +86,7 @@ const ToDoList = memo(({ todos, crossToDo, deleteToDo }) => {
       ))}
     </ListWrapper>
   );
-  // heads up: this should not work, but it does
-}, (prevProps, nextProps) => prevProps.todos === nextProps.todos); // have to manually tell react to check todos array
+}, (prevProps, nextProps) => prevProps.todos === nextProps.todos);
 
 // TODO: input error handling on empty value using Styled Components
 
@@ -101,7 +100,7 @@ const Home = () => {
   const [todos, setTodos] = useState([]);
   const [inputError, setInputError] = useState('');
 
-  function onFormSubmit (e) {
+  function onFormSubmit(e) {
     e.preventDefault();
     if (!value) {
       setInputError('Can not be empty');
@@ -114,7 +113,7 @@ const Home = () => {
       setTodos([...todos, todo]);
       setValue('');
     }
-  };
+  }
 
   function onInputChange(e) {
     setValue(e.target.value);
@@ -157,7 +156,7 @@ const Home = () => {
 };
 
 ToDoList.propTypes = {
-  todos: PropTypes.shape({
+  todos: PropTypes.arrayOf({
     value: PropTypes.string.isRequired,
     isCrossed: PropTypes.bool.isRequired,
   }).isRequired,
@@ -188,5 +187,5 @@ export default Home;
  * simplified trello(notion) - Aigul
  * advanced money converter - Maxat
  * classifieds site -
- * fake shop with cart - 
+ * fake shop with cart -
  */
