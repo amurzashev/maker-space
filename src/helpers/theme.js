@@ -5,6 +5,7 @@ export default {
     dark: '#342E37',
     white: '#FAFFFD',
     coral: '#FA824C',
+    alert: '#EA3546',
   },
   // TODO: add response design breakpoints in px?
   breakpoints: {

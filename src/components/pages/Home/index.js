@@ -22,8 +22,9 @@ const StyledInputText = styled(Input)`
   flex: 0.8;
   box-sizing: border-box;
   border: 0;
+  transition: 0.2s;
   ${(props) => (props.inputError ? `
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid ${props.theme.colors.alert};
   ` : `
     border-bottom: 1px solid ${props.theme.colors.secondary};
   `)};
@@ -31,8 +32,9 @@ const StyledInputText = styled(Input)`
 
 const StyledInputSubmit = styled(Input)`
   flex: 0.2;
+  transition: 0.2s;
   ${(props) => (props.inputError ? `
-    background-color: red;
+    background-color: ${props.theme.colors.alert};
   ` : '')}
  `;
 
@@ -43,13 +45,11 @@ const NewToDo = ({
     type: 'text',
     autoFocus: true,
     onChange: onInputChange,
-    placeholder: 'Add new task',
+    placeholder: inputError || 'Add new task',
     value,
-    inputError,
   };
   return (
     <StyledForm onSubmit={onFormSubmit}>
-      <p>{inputError}</p>
       <StyledInputText {...textInputProps} />
       <StyledInputSubmit type="submit" inputError={inputError}>Add task</StyledInputSubmit>
     </StyledForm>
