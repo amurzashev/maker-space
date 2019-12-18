@@ -156,10 +156,10 @@ const Home = () => {
 };
 
 ToDoList.propTypes = {
-  todos: PropTypes.arrayOf({
+  todos: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,
     isCrossed: PropTypes.bool.isRequired,
-  }).isRequired,
+  })).isRequired,
   crossToDo: PropTypes.func.isRequired,
   deleteToDo: PropTypes.func.isRequired,
 };
