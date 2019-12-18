@@ -12,6 +12,15 @@ const Wrap = styled.nav`
   box-sizing: border-box;
   background: ${(props) => props.theme.colors.primary};
   color: white;
+  display: flex;
+  align-items: center;
+  & > a {
+    margin: 0 5px;
+    text-decoration: none;
+  }
+  & > a:visited {
+    color: white;
+  }
 `;
 
 export default () => (
