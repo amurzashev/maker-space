@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/maker-space/static/js/main.7ea38da6.chunk.js",
+    "main.js.map": "/maker-space/static/js/main.7ea38da6.chunk.js.map",
+    "runtime-main.js": "/maker-space/static/js/runtime-main.8f716122.js",
+    "runtime-main.js.map": "/maker-space/static/js/runtime-main.8f716122.js.map",
+    "static/js/2.cc75f482.chunk.js": "/maker-space/static/js/2.cc75f482.chunk.js",
+    "static/js/2.cc75f482.chunk.js.map": "/maker-space/static/js/2.cc75f482.chunk.js.map",
+    "index.html": "/maker-space/index.html",
+    "precache-manifest.0c219ca42537f4570eb3d6ce29e9efc4.js": "/maker-space/precache-manifest.0c219ca42537f4570eb3d6ce29e9efc4.js",
+    "service-worker.js": "/maker-space/service-worker.js",
+    "static/js/2.cc75f482.chunk.js.LICENSE": "/maker-space/static/js/2.cc75f482.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8f716122.js",
+    "static/js/2.cc75f482.chunk.js",
+    "static/js/main.7ea38da6.chunk.js"
+  ]
+}
